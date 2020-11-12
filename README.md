@@ -1,7 +1,10 @@
-## nix-shell
+## Development
+
+If you have [nix]() installed, use the provided `nix-shell` to run and build the
+script.
 
 ```bash
-nix-shell -p pkgs.lua -p pkgs.luaPackages.lgi -p pkgs.entr
-echo main.lua | entr sh -c 'lua main.lua'
-feh -F --auto-reload cairodemo-harmonograph.png
+nix-shell
 ```
+
+TODO ALIASES
