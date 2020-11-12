@@ -8,3 +8,5 @@ nix-shell
 ```
 
 TODO ALIASES
+feh -F --auto-reload
+echo main.lua | entr sh -c 'lua main.lua'

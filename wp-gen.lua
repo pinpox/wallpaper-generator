@@ -1,13 +1,12 @@
 #! /usr/bin/env lua
 
 local math = require 'math'
-local lgi = require 'lgi'
 
 local M = {}
 
+function M.harmonograph(cr, palette, width, height)
 
-
-function M.harmonograph(cr, colors, width, height)
+	local colors = require 'colors'
 
 	-- From Wikipedia: [...] A typical harmonograph has two pendulums that move
 	-- in such a fashion, and a pen that is moved by two perpendicular rods
@@ -25,7 +24,7 @@ function M.harmonograph(cr, colors, width, height)
 	-- y  = A3 * sin(t*f3 + p3 ) * e^(−d * 3t) + A4 * sin( t * f4 + p4 ) * e^(−d4 * t)
     -- x  = A1 * sin(t*f1 + p1 ) * e^(−d * 1t) + A2 * sin( t * f2 + p2 ) * e^(−d2 * t)
 	--
-	
+
 	-- set random seed
 	math.randomseed( os.time() )
 
@@ -33,46 +32,30 @@ function M.harmonograph(cr, colors, width, height)
 	-- local f1, f2, f3, f4 = 0.2, 0.2, 0.2, 0.2
 	-- local d = 0.009
 	-- local p1, p2, p3, p4 = math.random(2 * math.pi),  math.random(2 * math.pi),  math.random(2 * math.pi),  math.random(2 * math.pi)
-
-
-f1=3.001
-f2=2
-f3=3
-f4=2
-d1=0.004
-d2=0.0065
-d3=0.008
-d4=0.019
-p1=0
-p2=0
-p3=math.pi/2
-p4=3*math.pi/2
-
-
-
-f1=10
-f2=6
-f3=1.002
-f4=3
-d1=0.02
-d2=0.0315
-d3=0.02
-d4=0.02
-p1=math.pi/16
-p2=3 * math.pi/2
-p3=13 * math.pi/16
-p4=math.pi
+	--
+	f1=10
+	f2=6
+	f3=1.002
+	f4=3
+	d1=0.02
+	d2=0.0315
+	d3=0.02
+	d4=0.02
+	p1=math.pi/16
+	p2=3 * math.pi/2
+	p3=13 * math.pi/16
+	p4=math.pi
 
 	-- background
-    cr:set_source_rgb(hex(colors.base02))
+    cr:set_source_rgb(colors.hex( palette.base02))
     cr:paint()
 
 	-- line parameters
-    -- cr:set_source_rgb(hex(colors.base0D))
-	print(hex(colors.base0D))
-	print(interpolate(hex(colors.base0D)))
+    -- cr:set_source_rgb(colors.hex( palette.base0D))
+	-- print(colors.hex( palette.base0D))
+	-- print(colors.interpolate(colors.hex( palette.base0D)))
 
-	cr:set_source_rgb(interpolate(hex(colors.base0D)))
+	cr:set_source_rgb(colors.interpolate(colors.hex( palette.base0D)))
 	cr.line_width = 2
 	cr.line_cap = 'ROUND'
 
@@ -84,10 +67,10 @@ p4=math.pi
 	local y = 500 * (math.sin(p3) + math.sin(p4))
 	local x = 500 * (math.sin(p1) + math.sin(p2))
 
-	for t=0, 10, 0.01 do
+	for t=0, 100, 0.01 do
 
 
-		-- cr:set_source_rgb(interpolate(hex(colors.base0D)), 1)
+		-- cr:set_source_rgb(colors.interpolate(colors.hex( palette.base0D)), 1)
 		-- x = (math.exp(-d1*t) * math.sin(t*f1+p1)) + (math.exp(-d2*t) * math.sin(t* f2 + p2))
 		-- y = (math.exp(-d3*t) * math.sin(t*f3+p3)) + (math.exp(-d4*t) * math.sin(t* f4 + p4))
 
