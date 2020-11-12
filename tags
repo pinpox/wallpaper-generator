@@ -1,0 +1,12 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+generators.harmonograph	main.lua	/^function generators.harmonograph(cr, colors, width, height)$/;"	f
+hex 	convertcolor.lua	/^local function hex (hex, alpha) $/;"	f
+hex 	main.lua	/^local function hex (hex, alpha)$/;"	f
+interpolate	main.lua	/^local function interpolate(r, g, b, step)$/;"	f
+rgb 	convertcolor.lua	/^local function rgb (r, g, b)$/;"	f
+rgba 	convertcolor.lua	/^local function rgba (r, g, b, alpha)$/;"	f
