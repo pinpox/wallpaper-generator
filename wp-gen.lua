@@ -96,7 +96,7 @@ function M.lines(cr, palette, width, height)
 		-- Pick a random foregraound color
 		--
 		local col = fg_colors[math.random(#fg_colors)]
-	    cr:set_source_rgb(colors.hex(col))
+		cr:set_source_rgb(colors.hex(col))
 
 		-- Randomize length
 		length = math.random(width)
