@@ -94,7 +94,6 @@ function M.lines(cr, palette, width, height)
 	for y = line_width + 5, height - line_width/2, line_width + 5 do
 
 		-- Pick a random foregraound color
-		--
 		local col = fg_colors[math.random(#fg_colors)]
 		cr:set_source_rgb(colors.hex(col))
 

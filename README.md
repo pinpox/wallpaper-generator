@@ -4,7 +4,13 @@ If you have [nix]() installed, use the provided `nix-shell` to run and build the
 script.
 
 ```bash
-nix-shell
+user@host: nix-shell
+[nix-shell:~/path]
+```
+
+Run `main.lua`, all dependencies should be there
+```
+[nix-shell:~/path] lua main.lua
 ```
 
 TODO ALIASES
