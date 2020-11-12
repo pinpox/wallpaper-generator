@@ -4,6 +4,7 @@ local M = {}
 local math = require 'math'
 local colors = require 'colors'
 
+-- Simulate a harmonograph
 function M.harmonograph(cr, palette, width, height)
 
 	-- From Wikipedia: [...] A typical harmonograph has two pendulums that move
@@ -49,16 +50,9 @@ function M.harmonograph(cr, palette, width, height)
 	-- Start position doesn't really matter, since the first line be fully transparent
 	local x, y = 0, 0
 
-	local fg_colors =  {
-		palette.base08,
-		palette.base09,
-		palette.base0A,
-		palette.base0B,
-		palette.base0C,
-		palette.base0D,
-		palette.base0E,
-		palette.base0F
-	}
+	local fg_colors =  { palette.base08, palette.base09, palette.base0A,
+	palette.base0B, palette.base0C, palette.base0D, palette.base0E,
+	palette.base0F }
 
 	-- Pick a random foregraound color
 	local col = fg_colors[math.random(#fg_colors)]
@@ -76,6 +70,44 @@ function M.harmonograph(cr, palette, width, height)
 		y = A/2 * (math.exp(-d3*t) * math.sin(t*f3+p3)) + (math.exp(-d4*t) * math.sin(t* f4 + p4))
 		cr:line_to(x, y)
 		cr:stroke()
+	end
+end
+
+function M.lines(cr, palette, width, height)
+
+	-- Draw background
+	cr:set_source_rgb(colors.hex( palette.base02))
+	cr:paint()
+
+	-- Set line parameters
+	local line_width = 100
+	cr.line_width = line_width
+	cr.line_cap = 'ROUND'
+
+	local fg_colors =  { palette.base08, palette.base09, palette.base0A,
+	palette.base0B, palette.base0C, palette.base0D, palette.base0E,
+	palette.base0F }
+
+	math.randomseed(os.time())
+
+	-- Iterate lines
+	for y = line_width + 5, height - line_width/2, line_width + 5 do
+
+		-- Pick a random foregraound color
+		--
+		local col = fg_colors[math.random(#fg_colors)]
+	    cr:set_source_rgb(colors.hex(col))
+
+		-- Randomize length
+		length = math.random(width)
+
+		-- Start
+		local x = math.random(width)
+
+		cr:move_to(x,y)
+		cr:line_to(x+length, y)
+		cr:stroke()
+
 	end
 end
 

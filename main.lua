@@ -33,12 +33,12 @@ for name, gen in pairs(generators) do
 
 	print("Running generator: " .. name)
 
-	-- Create drawing surface
+	-- Create drawing surface and context
 	local surface = cairo.RecordingSurface(cairo.Content.COLOR,
 	cairo.Rectangle { x = 0, y = 0, width = width, height = height })
+	local cr = cairo.Context(surface)
 
 	-- Run generator
-	local cr = cairo.Context(surface)
 	gen(cr, palette, width, height)
 
 	-- Create PNG file
