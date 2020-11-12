@@ -1,6 +1,6 @@
 local M = {}
 
-local function interpolate(r, g, b, step)
+local function interpolate(r1, g1, b1, r2, g2, b3, step)
 	-- print(r)
 	-- print(g)
 	-- print(b)

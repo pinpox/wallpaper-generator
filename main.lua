@@ -3,11 +3,11 @@ local lgi = require 'lgi'
 local cairo = lgi.cairo
 
 -- Set output size, e.g. your screen resolution
-width = 1920
-height = 1080
+local width = 1920
+local height = 1080
 
 -- Colors from xresources
-palette = {}
+local palette = {}
 palette.base00 = "#0b0b14"
 palette.base01 = "#13131a"
 palette.base02 = "#262631"
@@ -26,7 +26,7 @@ palette.base0E = "#9d8cff"
 palette.base0F = "#3f3866"
 
 -- Require all generators
-generators = require("wp-gen")
+local generators = require("wp-gen")
 
 -- Iterate through all generators and create .png files from them
 for name, gen in pairs(generators) do
