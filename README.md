@@ -3,10 +3,10 @@
 Generate random wallpapers from mathematical functions using a color palette (like
 `~/.Xresources`).
 
-![harmonograph](./examples/generator-harmonograph.png)
-![lines](./examples/generator-lines.png)
-
 Add your own generators in `wp-gen.lua`.
+
+<img src="./examples/generator-harmonograph.png" width="30%"></img> 
+<img src="./examples/generator-lines.png" width="30%"></img> 
 
 ## Development
 
