@@ -5,7 +5,6 @@ Generate random wallpapers from mathematical functions using a color palette (li
 
 Add your own generators in `wp-gen.lua`.
 
-
 #### Harmonograph
 
 <img src="./examples/harmonograph/1.png" width="30%"></img> 
@@ -23,19 +22,26 @@ Add your own generators in `wp-gen.lua`.
 
 ## Development
 
-If you have [nix]() installed, use the provided `nix-shell` to run and build the
-script.
+The project provides a [nix-shell]() with all necesary dependencies and some
+helpers ready.
+
 
 ```bash
+# Enter nix-shell
 user@host: nix-shell
-[nix-shell:~/path]
+
+# Build the project
+[nix-shell:~/path] build
 ```
 
-Run `main.lua`, all dependencies should be there
-```
-[nix-shell:~/path] lua main.lua
-```
+There is also a helper function defined, that will allow you to live-preview the
+generated image. It will run the script on each save and show the image
+fullscreen.
 
-TODO ALIASES
-feh -F --auto-reload
-echo main.lua | entr sh -c 'lua main.lua'
+```bash
+# Enter nix-shell
+user@host: nix-shell
+
+# Build the project
+[nix-shell:~/path] preview generator-homograph.png
+```
