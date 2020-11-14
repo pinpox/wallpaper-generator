@@ -20,7 +20,7 @@ Add your own generators in `wp-gen.lua`.
 <img src="./examples/lines/2.png" width="30%"></img> 
 <img src="./examples/lines/3.png" width="30%"></img> 
 
-#### Batman (because why not?)
+#### Batman Equation (because why not?)
 
 <img src="./examples/batman/1.png" width="30%"></img> 
 <img src="./examples/batman/2.png" width="30%"></img> 
