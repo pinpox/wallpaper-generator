@@ -110,7 +110,12 @@ function M.lines(cr, palette, width, height)
 	end
 end
 
--- Minimalistic wallpaper with colored lines
+-- Draw the Batman symbol using the batman equation. This one is quite poor in
+-- performance, you might not want to call it too often
+-- https://math.stackexchange.com/questions/54506/is-this-batman-equation-for-real
+--
+-- (Yes, it is.)
+--
 function M.batman(cr, palette, width, height)
 
 	-- Draw background
