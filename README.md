@@ -13,11 +13,13 @@ Add your own generators in `wp-gen.lua`.
 <img src="./examples/harmonograph/3.png" width="30%"></img> 
 <img src="./examples/harmonograph/4.png" width="30%"></img> 
 <img src="./examples/harmonograph/5.png" width="30%"></img> 
+<img src="./examples/harmonograph/6.png" width="30%"></img> 
 
 #### Lines
 
 <img src="./examples/lines/1.png" width="30%"></img> 
 <img src="./examples/lines/2.png" width="30%"></img> 
+<img src="./examples/lines/3.png" width="30%"></img> 
 
 ## Development
 
