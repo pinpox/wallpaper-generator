@@ -1,3 +1,3 @@
 *.png
-!examples/*.png
+!examples/*/*.png
 tags
