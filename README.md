@@ -42,6 +42,6 @@ fullscreen.
 # Enter nix-shell
 user@host: nix-shell
 
-# Build the project
+# Preview a generated image
 [nix-shell:~/path] preview generator-homograph.png
 ```
