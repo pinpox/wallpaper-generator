@@ -24,8 +24,7 @@ function M.harmonograph(cr, palette, width, height)
 	-- y  = A3 * sin(t*f3 + p3 ) * e^(−d * 3t) + A4 * sin( t * f4 + p4 ) * e^(−d4 * t)
 	-- x  = A1 * sin(t*f1 + p1 ) * e^(−d * 1t) + A2 * sin( t * f2 + p2 ) * e^(−d2 * t)
 
-
-	-- set random seed
+	-- Random seed and function parameters
 	math.randomseed(os.time())
 
 	local f1, f2, f3, f4 = math.random(15), math.random(15), math.random(15), math.random(15)
@@ -33,7 +32,8 @@ function M.harmonograph(cr, palette, width, height)
 	local p1, p2, p3, p4 = (math.random() * math.pi), (math.random() * math.pi), (math.random() * math.pi), (math.random() * math.pi)
 
 	-- Amplitude should be around half the screen size
-	local A = height / 2 + math.random(height/2)
+	local Ax1, Ax2 = width / 4 + math.random(width/4), width / 4 + math.random(width/4)
+	local Ay1, Ay2 = height / 4 + math.random(height/4), height / 4 + math.random(height/4)
 
 	-- Draw background
 	cr:set_source_rgb(colors.hex( palette.base02))
@@ -42,7 +42,6 @@ function M.harmonograph(cr, palette, width, height)
 	-- Set line parameters
 	cr:set_source_rgb(colors.hex(palette.base0D))
 	cr.line_width = 2
-	-- cr.line_cap = 'ROUND'
 
 	-- Center on screen
 	cr:translate(width/2, height/2)
@@ -66,13 +65,14 @@ function M.harmonograph(cr, palette, width, height)
 		cr:move_to(x, y)
 
 		-- Calculate position and draw line to it
-		x = A/2 * (math.exp(-d1*t) * math.sin(t*f1+p1)) + (math.exp(-d2*t) * math.sin(t* f2 + p2))
-		y = A/2 * (math.exp(-d3*t) * math.sin(t*f3+p3)) + (math.exp(-d4*t) * math.sin(t* f4 + p4))
+		x = (Ax1 * (math.exp(-d1*t) * math.sin(t*f1+p1))) + (Ax2 * (math.exp(-d2*t) * math.sin(t* f2 + p2)))
+		y = (Ay1 * (math.exp(-d3*t) * math.sin(t*f3+p3))) + (Ay2 * (math.exp(-d4*t) * math.sin(t* f4 + p4)))
 		cr:line_to(x, y)
 		cr:stroke()
 	end
 end
 
+-- Minimalistic wallpaper with colored lines
 function M.lines(cr, palette, width, height)
 
 	-- Draw background
