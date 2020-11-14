@@ -176,7 +176,7 @@ function M.batman(cr, palette, width, height)
 		)
 
 		dot(x,
-			-3 *  math.sqrt(1 - math.pow(x / 7,2)) *
+			-3 * math.sqrt(1 - math.pow(x / 7,2)) *
 			math.sqrt(math.abs(math.abs(x) - 4) / ( math.abs(x) - 4))
 		)
 
