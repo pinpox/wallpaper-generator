@@ -42,7 +42,7 @@ function M.harmonograph(cr, palette, width, height)
 	-- Set line parameters
 	cr:set_source_rgb(colors.hex(palette.base0D))
 	cr.line_width = 2
-	cr.line_cap = 'ROUND'
+	-- cr.line_cap = 'ROUND'
 
 	-- Center on screen
 	cr:translate(width/2, height/2)
@@ -109,5 +109,48 @@ function M.lines(cr, palette, width, height)
 
 	end
 end
+
+-- function M.spirograph(cr, palette, width, height)
+
+-- 	-- Draw background
+-- 	cr:set_source_rgb(colors.hex( palette.base02))
+-- 	cr:paint()
+
+-- 	-- Set line parameters
+-- 	cr.line_width = 2
+-- 	cr.line_cap = 'ROUND'
+
+-- 	local fg_colors =  { palette.base08, palette.base09, palette.base0A,
+-- 	palette.base0B, palette.base0C, palette.base0D, palette.base0E,
+-- 	palette.base0F }
+
+-- 	math.randomseed(os.time())
+
+-- 	-- Pick a random foregraound color
+-- 	local col = fg_colors[math.random(#fg_colors)]
+-- 	cr:set_source_rgb(colors.hex(col))
+
+-- 	local r1 = 600
+-- 	local r2 = 10
+
+-- 	local x, y = 0, 0
+
+-- 	-- Center on screen
+-- 	cr:translate(width/2, height/2)
+
+-- 	-- Iterate lines
+-- 	for t = 0, 360, 1 do
+
+
+-- 		cr:move_to(x,y)
+-- 		x1, y1 = math.sin(math.rad(t )), math.cos(math.rad(t))
+
+
+-- 		-- Start
+-- 		cr:line_to(x, y)
+-- 		cr:stroke()
+
+-- 	end
+-- end
 
 return M
