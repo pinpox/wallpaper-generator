@@ -1,6 +1,6 @@
 # Wallpaper generator
 
-Generate wallpapers from mathematical functions using a color palette (like
+Generate random wallpapers from mathematical functions using a color palette (like
 `~/.Xresources`).
 
 ![harmonograph](./examples/generator-harmonograph.png)
