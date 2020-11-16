@@ -20,21 +20,20 @@ function prisma(cr, palette, width, height)
 	-- Height of the triangle
 	local h = math.sqrt(math.pow(x, 2) - math.pow((x/2), 2))
 
-	-- Translate to the tip of the triangle to make the following calculations
-	-- easier
+	-- Translate to the tip of the triangle to make the calculations easier
 	cr:translate(width/2, (height/2) - h/1.5 )
 
 	-- Draw triangle
+	cr:set_source_rgb(colors.hex(palette.base07))
 	cr:move_to(0,0)
 	cr:line_to(x/2,h)
 	cr:line_to(-x/2,h)
 	cr:line_to(0,0)
+	cr:stroke()
 
 	-- helper line
 	local c_2 = vector.new(-x/4, h/2)
 
-	cr:move_to(x/4, h/2)
-	cr:line_to(c_2:unpack())
 
 	-- Incoming ray
 	-- The original pink floyd logo's incoming beam is about 15 degrees angled
@@ -47,13 +46,32 @@ function prisma(cr, palette, width, height)
 	cr:set_source_rgb(1, 1, 1)
 	cr:stroke()
 
-	-- Beam out
-	local colors = require 'colors'
+	-- Inner and right beam
+
+	local inner_colors = { palette.base02, palette.base03, palette.base04,
+	palette.base05, palette.base06, palette.base07}
+
 	local beam_colors =  { palette.base08, palette.base09, palette.base0A,
 	palette.base0B, palette.base0D, palette.base0E }
 
 	for i=1,6 do
 
+		-- Inner triangle segment
+		cr:set_source_rgb(colors.hex(inner_colors[i]))
+		cr:move_to(
+			x/6 + ((6 - i) * (x/36)),
+			h/3 + ((6 - i) * (h/18))
+		)
+
+		cr:line_to(c_2:unpack())
+
+		cr:line_to(
+			x/6 + ((7 - i) * (x/36)),
+			h/3 + ((7 - i) * (h/18))
+		)
+		cr:fill()
+
+		-- Out beam segment
 		cr:set_source_rgb(colors.hex(beam_colors[7-i]))
 
 		-- left side
@@ -80,9 +98,6 @@ function prisma(cr, palette, width, height)
 		cr:fill()
 
 	end
-
-	cr:set_source_rgb(1, 1, 1)
-	cr:stroke()
 end
 
 
