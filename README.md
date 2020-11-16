@@ -26,6 +26,10 @@ Add your own generators in `wp-gen.lua`.
 <img src="./examples/batman/2.png" width="30%"></img> 
 <img src="./examples/batman/3.png" width="30%"></img> 
 
+#### Pink Floyd
+
+<img src="./examples/prisma/1.png" width="30%"></img> 
+
 ## Development
 
 The project provides a [nix-shell]() with all necesary dependencies and some
