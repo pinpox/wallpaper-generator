@@ -17,7 +17,7 @@ function batman(cr, palette, width, height)
 	cr.line_join = 'CAIRO_LINE_JOIN_ROUND'
 
 	-- Pick a random foreground color
-	math.randomseed(os.time())
+	-- math.randomseed(os.time())
 
 	local fg_colors =  { palette.base08, palette.base09, palette.base0A,
 	palette.base0B, palette.base0C, palette.base0D, palette.base0E,

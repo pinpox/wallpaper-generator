@@ -15,7 +15,7 @@ function lines(cr, palette, width, height)
 	palette.base0B, palette.base0C, palette.base0D, palette.base0E,
 	palette.base0F }
 
-	math.randomseed(os.time())
+	-- math.randomseed(os.time())
 
 	-- Iterate lines
 	for y = line_width + 5, height - line_width/2, line_width + 5 do

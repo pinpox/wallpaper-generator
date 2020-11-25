@@ -20,7 +20,7 @@ function harmonograph(cr, palette, width, height)
 	-- x  = A1 * sin(t*f1 + p1 ) * e^(−d * 1t) + A2 * sin( t * f2 + p2 ) * e^(−d2 * t)
 
 	-- Random seed and function parameters
-	math.randomseed(os.time())
+	-- math.randomseed(os.time())
 
 	local f1, f2, f3, f4 = math.random(15), math.random(15), math.random(15), math.random(15)
 	local d1, d2, d3, d4 = math.random() * 0.04, math.random() * 0.04, math.random() * 0.04, math.random() * 0.04
