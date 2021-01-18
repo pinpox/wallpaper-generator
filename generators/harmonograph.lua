@@ -31,7 +31,7 @@ function harmonograph(cr, palette, width, height)
 	local Ay1, Ay2 = height / 4 + math.random(height/4), height / 4 + math.random(height/4)
 
 	-- Draw background
-	cr:set_source_rgb(colors.hex( palette.base02))
+	cr:set_source_rgb(colors.hex( palette.base01))
 	cr:paint()
 
 	-- Set line parameters
