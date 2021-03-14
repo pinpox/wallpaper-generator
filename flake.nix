@@ -1,16 +1,31 @@
 {
-  description = "Random Art Wallpaper Generator";
-  inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; };
+  description = "Generate wallpaper images from mathematical functions";
 
-  outputs = { self, nixpkgs }: {
+  inputs.flake-utils.url = "github:numtide/flake-utils";
 
-    defaultPackage.x86_64-linux =
-      # Notice the reference to nixpkgs here.
-      with import nixpkgs { system = "x86_64-linux"; };
-      stdenv.mkDerivation {
-        name = "wallpaper-generator";
-        src = self;
-        installPhase = "mkdir -p $out; mv * $out";
-      };
-  };
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        lua = pkgs.lua.withPackages (ps: with ps; [ lgi luafilesystem ]);
+      in rec {
+        packages = flake-utils.lib.flattenTree {
+          wp-gen = pkgs.stdenv.mkDerivation {
+            name = "wallpaper-generator";
+            src = self;
+            buildInputs =
+              [ pkgs.luaPackages.luafilesystem pkgs.luaPackages.lgi pkgs.lua ];
+            installPhase = "mkdir -p $out; mv * $out";
+          };
+        };
+        defaultPackage = packages.wp-gen;
+
+        apps.wp-gen = flake-utils.lib.mkApp {
+          drv = pkgs.writeScriptBin "wallpaper-generator" ''
+            export LUA_PATH=${packages.wp-gen}/?.lua
+            ${lua}/bin/lua main.lua
+          '';
+        };
+        defaultApp = apps.wp-gen;
+      });
 }

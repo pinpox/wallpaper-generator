@@ -2,6 +2,8 @@
 -- Simulate a harmonograph
 function harmonograph(cr, palette, width, height)
 
+
+	local colors = require 'colors'
 	-- From Wikipedia: [...] A typical harmonograph has two pendulums that move
 	-- in such a fashion, and a pen that is moved by two perpendicular rods
 	-- connected to these pendulums.  Therefore, the path of the harmonograph
