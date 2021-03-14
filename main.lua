@@ -26,12 +26,12 @@ palette.base0E = "#9d8cff"
 palette.base0F = "#3f3866"
 
 -- Require all generators
-local generators = require("wp-gen")
+local generator = require ("generators/" .. arg[1])
+
 
 -- Iterate through all generators and create .png files from them
-for name, gen in pairs(generators) do
 
-	print("Running generator: " .. name)
+	print("Running generator: " .. arg[1])
 
 	-- Create drawing surface and context
 	local surface = cairo.RecordingSurface(cairo.Content.COLOR,
@@ -39,8 +39,7 @@ for name, gen in pairs(generators) do
 	local cr = cairo.Context(surface)
 
 	-- Run generator
-	gen(cr, palette, width, height)
+	generator(cr, palette, width, height)
 
 	-- Create PNG file
-	surface:write_to_png('generator-' .. name .. '.png')
-end
+	surface:write_to_png('generator-' .. arg[1] .. '.png')

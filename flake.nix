@@ -29,7 +29,6 @@
             installPhase = ''
               runHook preInstall
               install -Dm755 main.lua $out/bin/wallpaper-generator
-              install -Dm755 wp-gen.lua $out/bin/wp-gen.lua
               install -Dm755 -d generators $out/bin/generators
 
               wrapProgram $out/bin/wallpaper-generator \
