@@ -22,9 +22,8 @@
 
         apps.wp-gen = flake-utils.lib.mkApp {
           drv = pkgs.writeScriptBin "wallpaper-generator" ''
-            export LUA_PATH=${packages.wp-gen}/?.lua
             export LUA_PATH="$LUA_PATH;$(pwd)/?.lua"
-            ${lua}/bin/lua main.lua
+            ${lua}/bin/lua main.lua wp-gen.lua
           '';
         };
         defaultApp = apps.wp-gen;
