@@ -30,7 +30,7 @@
               runHook preInstall
               install -Dm755 main.lua $out/bin/wallpaper-generator
               install -Dm755 wp-gen.lua $out/bin/wp-gen.lua
-              install -Dm755 generators $out/bin/wallpaper-generator/generators
+              install -Dm755 generators $out/bin/generators
 
               wrapProgram $out/bin/wallpaper-generator \
                 --set LUA_CPATH "${ pkgs.lib.concatStringsSep ";" (map pkgs.luaPackages.getLuaCPath libs) }" \
