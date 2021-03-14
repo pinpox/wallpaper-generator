@@ -1,4 +1,4 @@
-
+#! /usr/bin/env lua
 local lgi = require 'lgi'
 local cairo = lgi.cairo
 
