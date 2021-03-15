@@ -37,3 +37,18 @@ steps:
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
+
+---
+
+kind: pipeline
+name: default
+type: docker
+
+steps:
+- name: publish
+  image: plugins/github-release
+  settings:
+      from_secret: github_token
+    files: harmonograph.png
+  when:
+    event: tag
