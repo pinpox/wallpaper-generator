@@ -8,9 +8,9 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
         lua-with-pkgs =
-          pkgs.lua.withPackages (ps: with ps; [ lgi luafilesystem ]);
+          pkgs.lua.withPackages (ps: with ps; [ lgi luafilesystem argparse ]);
 
-        libs = [ pkgs.lua pkgs.luaPackages.lgi pkgs.luaPackages.luafilesystem ];
+        libs = [ pkgs.lua pkgs.luaPackages.lgi pkgs.luaPackages.luafilesystem pkgs.luaPackages.argparse ];
       in rec {
         packages = flake-utils.lib.flattenTree rec {
 
