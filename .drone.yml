@@ -44,6 +44,10 @@ kind: pipeline
 name: default
 type: docker
 
+platform:
+  os: linux
+  arch: amd64
+
 steps:
 - name: publish
   image: plugins/github-release
