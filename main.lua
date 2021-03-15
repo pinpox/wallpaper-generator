@@ -25,19 +25,9 @@ palette.base0D = "#31baff"
 palette.base0E = "#9d8cff"
 palette.base0F = "#3f3866"
 
-
 -- Check exactly one parameter was passend, display help and exit otherwise
 if #arg ~= 1 then
-	print("Specify the generator to run, e.g: \nwallpaper-generator harmonograph\nAvailable generators: \n")
-
-	local lfs = require ( "lfs" )
-	local folder = "generators"
-
-	for entry in lfs.dir(folder) do
-		if entry ~= "." and entry ~= ".." and string.match(entry, ".lua$") then
-			print("- " .. entry)
-		end
-	end
+	print("Specify the generator to run, e.g: \nwallpaper-generator harmonograph.\nSee the ./generators directory for available generators")
 	return
 end
 
