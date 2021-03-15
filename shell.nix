@@ -5,7 +5,7 @@ with import <nixpkgs> { };
 # List lua packages sepraterly, so we can get the path in the exports
 with luaPackages;
 let
-  libs = [ lua lgi luafilesystem ];
+  libs = [ lua lgi luafilesystem argparse];
 
   # Make a new "derivation" that represents our shell
 in stdenv.mkDerivation rec {
