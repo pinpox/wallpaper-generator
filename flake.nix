@@ -48,8 +48,5 @@
 
         };
         defaultPackage = packages.wp-gen;
-
-        apps.wp-gen = packages.wp-gen;
-        defaultApp = apps.wp-gen;
       });
 }
