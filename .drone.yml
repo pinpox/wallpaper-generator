@@ -52,3 +52,4 @@ steps:
     files: harmonograph.png
   when:
     event: tag
+
