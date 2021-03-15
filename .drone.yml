@@ -29,3 +29,11 @@ steps:
   - nix build
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: Run generator
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix run ".#" -- harmonograph
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
