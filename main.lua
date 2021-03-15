@@ -25,21 +25,33 @@ palette.base0D = "#31baff"
 palette.base0E = "#9d8cff"
 palette.base0F = "#3f3866"
 
--- Require all generators
+
+-- Check exactly one parameter was passend, display help and exit otherwise
+if #arg ~= 1 then
+	print("Specify the generator to run, e.g: \nwallpaper-generator harmonograph\nAvailable generators: \n")
+
+	local lfs = require ( "lfs" )
+	local folder = "generators"
+
+	for entry in lfs.dir(folder) do
+		if entry ~= "." and entry ~= ".." and string.match(entry, ".lua$") then
+			print("- " .. entry)
+		end
+	end
+	return
+end
+
 local generator = require ("generators/" .. arg[1])
 
+print("Running generator: " .. arg[1])
 
--- Iterate through all generators and create .png files from them
+-- Create drawing surface and context
+local surface = cairo.RecordingSurface(cairo.Content.COLOR,
+cairo.Rectangle { x = 0, y = 0, width = width, height = height })
+local cr = cairo.Context(surface)
 
-	print("Running generator: " .. arg[1])
+-- Run generator
+generator(cr, palette, width, height)
 
-	-- Create drawing surface and context
-	local surface = cairo.RecordingSurface(cairo.Content.COLOR,
-	cairo.Rectangle { x = 0, y = 0, width = width, height = height })
-	local cr = cairo.Context(surface)
-
-	-- Run generator
-	generator(cr, palette, width, height)
-
-	-- Create PNG file
-	surface:write_to_png('generator-' .. arg[1] .. '.png')
+-- Create PNG file
+surface:write_to_png('generator-' .. arg[1] .. '.png')
