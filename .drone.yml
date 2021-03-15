@@ -49,12 +49,20 @@ platform:
   arch: amd64
 
 steps:
-- name: publish
+- name: Generate examples
+  image: nixpkgs/nix-flakes
+  commands:
+  - nix run ".#" -- harmonograph -o harmonograph.png
+  - nix run ".#" -- harmonograph -o lines.png
+  environment:
+    NIX_PATH: nixpkgs=channel:nixos-unstable
+
+- name: Publish
   image: plugins/github-release
   settings:
     api_key:
       from_secret: github_token
-    files: harmonograph.png
+    files: *.png
   when:
     event: tag
 
