@@ -41,7 +41,7 @@ steps:
 ---
 
 kind: pipeline
-name: default
+name: Publish tagged version
 type: docker
 
 platform:
