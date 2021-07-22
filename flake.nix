@@ -1,16 +1,29 @@
 {
   description = "Generate wallpaper images from mathematical functions";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
+  };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         lua-with-pkgs =
           pkgs.lua.withPackages (ps: with ps; [ lgi luafilesystem argparse ]);
 
-        libs = [ pkgs.lua pkgs.luaPackages.lgi pkgs.luaPackages.luafilesystem pkgs.luaPackages.argparse ];
+        libs = [
+          pkgs.lua
+          pkgs.luaPackages.lgi
+          pkgs.luaPackages.luafilesystem
+          pkgs.luaPackages.argparse
+        ];
+
       in rec {
         packages = flake-utils.lib.flattenTree rec {
 
@@ -32,15 +45,19 @@
               install -Dm755 -d generators $out/bin/generators
 
               wrapProgram $out/bin/wallpaper-generator \
-                --set LUA_CPATH "${ pkgs.lib.concatStringsSep ";" (map pkgs.luaPackages.getLuaCPath libs) }" \
+                --set LUA_CPATH "${
+                  pkgs.lib.concatStringsSep ";"
+                  (map pkgs.luaPackages.getLuaCPath libs)
+                }" \
                 --set LUA_PATH "${self}/?.lua"
 
               runHook postInstall
             '';
 
-            meta = with pkgs.stdenv.lib; {
+            meta = with pkgs.lib; {
               homepage = "https://github.com/pinpox/wallpaper-generator";
-              description = "Generate wallpaper images from mathematical functions";
+              description =
+                "Generate wallpaper images from mathematical functions";
               license = licenses.mit;
               maintainers = [ maintainers.pinpox ];
             };
