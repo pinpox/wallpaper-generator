@@ -52,7 +52,8 @@ steps:
   image: nixpkgs/nix-flakes
   commands:
   - nix run ".#" -- harmonograph -o harmonograph.png
-  - nix run ".#" -- harmonograph -o lines.png
+  - nix run ".#" -- lines -o lines.png
+  - nix run ".#" -- circles -o circles.png
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
