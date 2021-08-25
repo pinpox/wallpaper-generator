@@ -12,12 +12,12 @@ end
 -- operator overloading
 function vector.__add(lhs, rhs)
     assert(is_vector(lhs) and is_vector(rhs), "Type mismatch: vector expected.")
-    return vector.new(lhs.x + rhs.x, lhs.x + rhs.x)
+    return vector.new(lhs.x + rhs.x, lhs.y + rhs.y)
 end
 
 function vector.__sub(lhs, rhs)
     assert(is_vector(lhs) and is_vector(rhs), "Type mismatch: vector expected.")
-    return vector.new(lhs.x - rhs.x, lhs.x - rhs.x)
+    return vector.new(lhs.x - rhs.x, lhs.y - rhs.y)
 end
 
 function vector.__mul(lhs, rhs)
