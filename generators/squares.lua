@@ -64,7 +64,6 @@ local function squares(cr, palette, width, height)
             --
             local col = fg_colors[math.random(#fg_colors)]
             cr:set_source_rgb(colors.hex(col))
-            -- cr:arc(center.x, center.y, carre.halfSide, 0, 6.28)
             cr:rectangle(center.x - carre.halfSide, center.y - carre.halfSide,
                          2 * carre.halfSide, 2 * carre.halfSide)
             cr:fill()
