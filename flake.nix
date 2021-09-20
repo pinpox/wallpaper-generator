@@ -11,6 +11,11 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }:
+
+  {
+    checks."x86_64-linux".example = self.packages."x86_64-linux".wp-gen;
+  } //
+
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
