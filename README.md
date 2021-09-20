@@ -22,7 +22,11 @@ Add your own generators in `wp-gen.lua`.
 
 #### Circles
 
-<img src="./examples/circles/1.png" width="30%"></img> 
+<img src="./examples/circles/1.png" width="30%"></img>
+
+#### Squares
+
+<img src="./examples/squares/1.png" width="30%"></img> 
 
 #### Batman Equation (because why not?)
 
