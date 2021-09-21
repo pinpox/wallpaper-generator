@@ -42,7 +42,11 @@
 
             nativeBuildInputs = [ pkgs.makeWrapper ];
 
-            buildInputs = [ lua-with-pkgs ];
+            buildInputs = [
+              lua-with-pkgs
+              pkgs.gobject-introspection
+              pkgs.cairo
+            ];
 
             installPhase = ''
               runHook preInstall
