@@ -51,7 +51,8 @@
             installPhase = ''
               runHook preInstall
               install -Dm755 main.lua $out/bin/wallpaper-generator
-              install -Dm755 -d generators $out/bin/generators
+              install -Dm755 -t $out/bin/generators generators/*.lua
+              install -Dm755 -t $out/bin/generators/lib generators/lib/*.lua
 
               wrapProgram $out/bin/wallpaper-generator \
                 --set LUA_CPATH "${
