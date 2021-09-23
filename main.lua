@@ -1,10 +1,4 @@
 #! /usr/bin/env lua
-
-print("LUA_PATH")
-print(os.getenv("LUA_PATH"):gsub(";","\n"))
-print("LUA_CPATH")
-print(os.getenv("LUA_CPATH"):gsub(";","\n"))
-
 local lgi = require 'lgi'
 local argparse = require "argparse"
 local cairo = lgi.cairo
