@@ -27,6 +27,8 @@
           pkgs.luaPackages.lgi
           pkgs.luaPackages.luafilesystem
           pkgs.luaPackages.argparse
+          pkgs.cairo
+          pkgs.gobject-introspection
         ];
 
       in rec {
