@@ -29,6 +29,10 @@ steps:
   - nix copy --to 's3://example-nix-cache?profile=default&scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L -vvv
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
+    AWS_ACCESS_KEY_ID:
+      from_secret: s3_access_key
+    AWS_SECRET_KEY:
+      from_secret: s3_secret_key
 
 - name: Run generator
   image: nixpkgs/nix-flakes
