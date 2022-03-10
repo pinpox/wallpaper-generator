@@ -26,6 +26,7 @@ steps:
   image: nixpkgs/nix-flakes
   commands:
   - nix build
+  - nix copy --to 's3://example-nix-cache?profile=default&scheme=https&region=eu-central-1&endpoint=s3.lounge.rocks' $(nix-store -qR result/) -L -vvv
   environment:
     NIX_PATH: nixpkgs=channel:nixos-unstable
 
