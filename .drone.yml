@@ -31,7 +31,7 @@ steps:
     NIX_PATH: nixpkgs=channel:nixos-unstable
     AWS_ACCESS_KEY_ID:
       from_secret: s3_access_key
-    AWS_SECRET_KEY:
+    AWS_SECRET_ACCESS_KEY:
       from_secret: s3_secret_key
 
 - name: Run generator
