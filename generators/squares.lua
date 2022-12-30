@@ -4,14 +4,7 @@ local vector = require 'generators.lib.vector'
 local function distance(vector1, vector2)
     return math.max(math.abs(vector1.x - vector2.x),
                     math.abs(vector1.y - vector2.y))
-end
-
-local function collisionScreenEdges(square, width, height, margin)
-    return  square.center.x + square.halfSide >= width - margin
-        or square.center.x - square.halfSide <= margin
-        or square.center.y + square.halfSide >= height - margin
-        or square.center.y - square.halfSide <= margin
-end
+    end
 
 local function collisionInSquare(square, squaresTable)
     local ans = false
@@ -24,16 +17,22 @@ local function collisionInSquare(square, squaresTable)
     return ans
 end
 
-
-local function collisionOutSquare(square, squaresTable, margin)
-    local ans = false
-    local i = 1
-    while not ans and i <= #squaresTable do
+function maxDistOthers(square, squaresTable, margin, max_dim)
+    local r = max_dim
+    i = 1
+    while i <= #squaresTable do
         local temp = distance(square.center, squaresTable[i].center)
-        ans = temp <= square.halfSide + squaresTable[i].halfSide + margin
+        r = math.min(r, temp - squaresTable[i].halfSide - margin)
         i = i + 1
     end
-    return ans
+    return r
+end
+
+local function maxDistEdges(square, margin, w, h)
+    return math.min(w - 1 - margin - square.center.x,
+                    square.center.x - margin,
+                    square.center.y - margin,
+                    h - 1 - margin - square.center.y)
 end
 
 local function squares(cr, palette, width, height)
@@ -47,26 +46,27 @@ local function squares(cr, palette, width, height)
     local fg_colors =  { palette.base08, palette.base09, palette.base0A,
                          palette.base0B, palette.base0C, palette.base0D, palette.base0E,
                          palette.base0F }
+    --
     math.randomseed(os.time())
-    local cTable = {}
+    local sTable = {}
     local center
-    local carre
-    while #cTable < nSquares do
+    local square
+    while #sTable < nSquares do
         center = vector.new(math.random(width), math.random(height))
-        carre = {center = center, halfSide = 1}
+        square = {center = center, halfSide = 1}
         --
-        if not collisionInSquare(carre, cTable) then
-            while not collisionOutSquare(carre, cTable, margin) and
-                not collisionScreenEdges(carre, width, height, margin) do
-                carre.halfSide = carre.halfSide + 1
+        if not collisionInSquare(square, sTable) then
+            square.halfSide = math.min(maxDistOthers(square, sTable, margin, math.min(width, height)),
+                                       maxDistEdges(square, margin, width, height))
+            if square.halfSide > 0 then
+                table.insert(sTable, square)
+                --
+                local col = fg_colors[math.random(#fg_colors)]
+                cr:set_source_rgb(colors.hex(col))
+                cr:rectangle(center.x - square.halfSide, center.y - square.halfSide,
+                         2 * square.halfSide, 2 * square.halfSide)
+                cr:fill()
             end
-            table.insert(cTable, carre)
-            --
-            local col = fg_colors[math.random(#fg_colors)]
-            cr:set_source_rgb(colors.hex(col))
-            cr:rectangle(center.x - carre.halfSide, center.y - carre.halfSide,
-                         2 * carre.halfSide, 2 * carre.halfSide)
-            cr:fill()
         end
     end
 end
