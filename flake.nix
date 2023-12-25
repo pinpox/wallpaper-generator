@@ -70,6 +70,19 @@
             };
           };
 
+          wallpaper = pkgs.callPackage
+            ({ function ? "batman", width ? 3840, height ? 2160, extraArguments ? "", ... }:
+              pkgs.stdenv.mkDerivation {
+                name = "wallpaper";
+                dontUnpack = true;
+                phases = [ "installPhase" ];
+                installPhase = ''
+                  mkdir $out
+                  ${self.packages.${system}.wp-gen}/bin/wallpaper-generator ${function} --width ${toString width} --height ${toString height} ${extraArguments} -o $out/wallpaper.png
+                '';
+              })
+            { };
+
         };
         defaultPackage = packages.wp-gen;
       });
