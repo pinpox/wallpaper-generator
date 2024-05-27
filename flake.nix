@@ -32,9 +32,9 @@
         ];
 
       in rec {
-        packages = flake-utils.lib.flattenTree rec {
+        packages = flake-utils.lib.flattenTree {
 
-          wp-gen = pkgs.stdenv.mkDerivation rec {
+          wp-gen = pkgs.stdenv.mkDerivation {
             pname = "wallpaper-generator";
             version = "1.0";
 
